@@ -17,3 +17,5 @@ Route::get('/', function () {
 });
 
 Route::get('/test','Admin\IndexController@test');
+
+Route::any('/callback','Admin\IndexController@callback');

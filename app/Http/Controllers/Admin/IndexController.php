@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Chengyu;
+use EasyWeChat\Factory;
 
 class IndexController extends Controller
 {
@@ -24,6 +25,11 @@ class IndexController extends Controller
         $res = $data->save();
         $chengyu::destroy();
         dd($res);
+    }
+
+    public function callback()
+    {
+        echo 'success';
     }
 
 }
