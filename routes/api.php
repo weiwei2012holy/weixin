@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/test','Admin\IndexController@test');
 
+
+Route::any('/getWeather','Admin\IndexController@getWeather');
+Route::any('/saveWeatherAddress','Admin\IndexController@saveAddress');
