@@ -21,3 +21,4 @@ Route::get('/test','Admin\IndexController@test');
 Route::any('/callback','Admin\IndexController@callback');
 
 Route::any('/gatherWeather','Admin\IndexController@gatherWeather');
+Route::any('/downloadWeather','Admin\IndexController@downloadWeather');

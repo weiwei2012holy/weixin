@@ -9,6 +9,10 @@
     <input type="button" name="" value="获取" id="get">
     <input type="text" name="code" id="code" value="59758">
 </form>
+<p>
+    <input type="text" name="" id="city">
+    <input type="button" value="点击下载" id="download">
+</p>
 <p>采集结果</p>
 
 <div id="msg_box">
@@ -24,6 +28,16 @@
     // var url = 'http://tianqi.2345.com/t/wea_history/js/201802/59287_201802.js'
     var storUrl = 'http://local.weixin.com:8080/api/getWeather'
     // var addressUrl = 'http://local.weixin.com:8080/api/saveWeatherAddress'
+
+
+    $('#download').click(function () {
+        var city = $('#city').val()
+        if (city){
+            window.open('downloadWeather?city='+city)
+
+        }
+
+    })
 
     function store(data) {
         $.ajax({

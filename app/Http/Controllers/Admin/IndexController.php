@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\WeatherExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Chengyu;
 use EasyWeChat\Factory;
 use App\Model;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IndexController extends Controller
 {
+
+
     //
 
     public function test(Request $request)
@@ -38,11 +42,11 @@ class IndexController extends Controller
     {
         $data = $request->all();
 
-        foreach ($data['tqInfo'] as $k=>$v){
+        foreach ($data['tqInfo'] as $k => $v) {
             $v['city'] = $data['city'];
             $v['bWendu'] = (int)$v['bWendu'];
             $v['yWendu'] = (int)$v['yWendu'];
-            Model\Weather::firstOrCreate(['city'=>$data['city'],'ymd'=>$v['ymd']],$v);
+            Model\Weather::firstOrCreate(['city' => $data['city'], 'ymd' => $v['ymd']], $v);
         }
         return $v;
     }
@@ -57,4 +61,17 @@ class IndexController extends Controller
     {
         return view('gatherWeather');
     }
+
+    public function downloadWeather(Request $request)
+    {
+        ini_set('memory_limit','500M');
+        set_time_limit(0);//设置超时限制为0分钟
+        $city = $request->get('city')?:'广州';
+        return Excel::download(new WeatherExport($city), $city.'_weather.xlsx');
+        $data = (Model\Weather::where('city', '广州')->limit(10)->get());
+        return Excel::download($data,'weather.xlsx','Xlsx');
+
+//        return Excel::download(['name'=>1]);
+    }
+
 }
