@@ -129,11 +129,11 @@
                     dataType: "jsonp", //指定服务器返回的数据类型
                     jsonpCallback: 'callback',
                     success: function (data) {
-                        // console.log(data)
+                        console.log('success')
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         // console.log(XMLHttpRequest)
-                        // console.log(errorThrown)
+                        console.log(errorThrown)
                         store(weather_str)
                     }
                 });
