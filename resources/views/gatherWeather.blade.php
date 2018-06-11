@@ -6,7 +6,7 @@
     <title>test ws</title>
 </head>
 <form>
-    <p>采集日期</p>
+    <p>采集日期,最早2011年</p>
     <input type="text" id="startYear" value="2016">年-
     <input type="text" id="endYear" value="2018">年
     ,采集地区代码:<input type="text" name="code" id="code" value="60025">
@@ -18,6 +18,7 @@
     <input type="button" value="点击下载" id="download">
 </p>
 <p>采集结果</p>
+<strong id="showMsg" style="color: green"></strong>
 
 <div id="msg_box">
 
@@ -30,7 +31,7 @@
 
 <script type="">
     // var url = 'http://tianqi.2345.com/t/wea_history/js/201802/59287_201802.js'
-    var storUrl = 'http://local.weixin.com:8080/api/getWeather'
+    var storUrl = 'api/getWeather'
     // var addressUrl = 'http://local.weixin.com:8080/api/saveWeatherAddress'
 
 
@@ -120,6 +121,15 @@
     // }
 
 
+    const curDate = new Date(Date.now())
+    const year = curDate.getFullYear()
+    const month = `0${curDate.getMonth() + 1}`.slice(-2)
+    const date = `0${curDate.getDate()}`.slice(-2)
+    const hours = `0${curDate.getHours()}`.slice(-2)
+    const mins = `0${curDate.getMinutes()}`.slice(-2)
+    const seconds = `0${curDate.getSeconds()}`.slice(-2)
+
+    console.log(month)
     $('#get').click(function () {
         var cityCode = $('#code').val()
         console.log(cityCode)
@@ -129,8 +139,11 @@
         var startYear = $('#startYear').val()
         var endYear = $('#endYear').val()
 
-        startYear = startYear ? startYear : 2016
-        endYear = endYear ? endYear : 2018
+        endYear = endYear >= year ? year : endYear
+        startYear = startYear <= endYear ? startYear : endYear
+        $('#showMsg').text('采集周期:' + startYear + '-' + endYear+',地区代码:'+cityCode)
+
+
         for (startYear; startYear <= endYear; startYear++) {
             for (var month = 1; month <= 12; month++) {
                 if (startYear >= 2018 && month >= 6) break
