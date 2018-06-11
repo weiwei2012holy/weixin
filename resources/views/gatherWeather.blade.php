@@ -6,8 +6,12 @@
     <title>test ws</title>
 </head>
 <form>
-    <input type="button" name="" value="获取" id="get">
-    <input type="text" name="code" id="code" value="59758">
+    <p>采集日期</p>
+    <input type="text" id="startYear" value="2016">年-
+    <input type="text" id="endYear" value="2018">年
+    ,采集地区代码:<input type="text" name="code" id="code" value="60025">
+    <input type="button" name="" value="开始采集" id="get">
+
 </form>
 <p>
     <input type="text" name="" id="city">
@@ -32,8 +36,8 @@
 
     $('#download').click(function () {
         var city = $('#city').val()
-        if (city){
-            window.open('downloadWeather?city='+city)
+        if (city) {
+            window.open('downloadWeather?city=' + city)
 
         }
 
@@ -46,7 +50,7 @@
             data: data,
             success: function (data) {
                 console.log(data.city, data.ymd, '操作成功!')
-                var html = '<p>'+data.city+data.ymd+'操作成功'+'</p>'
+                var html = '<p>' + data.city + data.ymd + '操作成功' + '</p>'
 
                 $('#msg_box').prepend(html)
                 $('#msg_box .media').filter(function (index) {
@@ -122,14 +126,19 @@
 
         // for (var i in citys) {
         //     var cityCode = citys[i]
-        for (var year = 2016; year <= 2018; year++) {
-            for (var month = 1; month <= 12; month++) {
-                if (year >= 2018 && month >= 6) break
+        var startYear = $('#startYear').val()
+        var endYear = $('#endYear').val()
 
-                var str = year + '' + `0${month}`.slice(-2)
+        startYear = startYear ? startYear : 2016
+        endYear = endYear ? endYear : 2018
+        for (startYear; startYear <= endYear; startYear++) {
+            for (var month = 1; month <= 12; month++) {
+                if (startYear >= 2018 && month >= 6) break
+
+                var str = startYear + '' + `0${month}`.slice(-2)
                 //201602月之前的 url格式不一样
                 if (str <= 201602) {
-                    str = year + '' + month
+                    str = startYear + '' + month
                     var url = 'http://tianqi.2345.com/t/wea_history/js/' + cityCode + '_' + str + '.js'
                 } else {
                     var url = 'http://tianqi.2345.com/t/wea_history/js/' + str + '/' + cityCode + '_' + str + '.js'
