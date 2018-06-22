@@ -21,6 +21,15 @@ class WeatherExport implements FromCollection
 
     public function collection()
     {
-        return Model\Weather::where('city', $this->city)->get();
+        $stime = request('stime');
+        $etime = request('etime');
+        $query = Model\Weather::query()->where('city', $this->city);
+        if ($stime){
+            $query = $query->where('ymd','>=',$stime);
+        }
+        if ($etime){
+            $query = $query->where('ymd','<=',$etime);
+        }
+        return $query->get();
     }
 }

@@ -67,11 +67,10 @@ class IndexController extends Controller
         ini_set('memory_limit','500M');
         set_time_limit(0);//设置超时限制为0分钟
         $city = $request->get('city')?:'广州';
+        if(Model\Weather::where('city', $city)->count() <= 0){
+            return $city.'暂无数据,请先输入地区代码采集:<a href="http://tianqi.2345.com/js/citySelectData.js">地区查询地址</a>';
+        }
         return Excel::download(new WeatherExport($city), $city.'_weather.xlsx');
-        $data = (Model\Weather::where('city', '广州')->limit(10)->get());
-        return Excel::download($data,'weather.xlsx','Xlsx');
-
-//        return Excel::download(['name'=>1]);
     }
 
 }

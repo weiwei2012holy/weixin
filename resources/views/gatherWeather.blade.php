@@ -14,7 +14,13 @@
 
 </form>
 <p>
-    <input type="text" name="" id="city">
+<p>导出日期:不填全部导出</p>
+
+    <input type="date" name="stime" id="stime" value="2014-01-01">
+    至
+    <input type="date" name="etime" id="etime" value="2018-06-01">
+    <input type="text" name="" placeholder="请输入需要下载的城市" id="city">
+
     <input type="button" value="点击下载" id="download">
 </p>
 <p>采集结果</p>
@@ -37,8 +43,10 @@
 
     $('#download').click(function () {
         var city = $('#city').val()
+        var stime = $('#stime').val()
+        var etime = $('#etime').val()
         if (city) {
-            window.open('downloadWeather?city=' + city)
+            window.open('downloadWeather?city=' + city+'&stime='+stime+'&etime='+etime)
 
         }
 
