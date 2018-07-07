@@ -46,9 +46,10 @@ class IndexController extends Controller
             $v['city'] = $data['city'];
             $v['bWendu'] = (int)$v['bWendu'];
             $v['yWendu'] = (int)$v['yWendu'];
-            Model\Weather::firstOrCreate(['city' => $data['city'], 'ymd' => $v['ymd']], $v);
+            $res = Model\Weather::firstOrCreate(['city' => $data['city'], 'ymd' => $v['ymd']], $v);
         }
-        return $v;
+
+        return $res;
     }
 
 
