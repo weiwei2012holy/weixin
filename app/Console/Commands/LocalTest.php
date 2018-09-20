@@ -48,7 +48,6 @@ class LocalTest extends Command
         $content = $res_body->getContents();
         file_put_contents(storage_path().'/test.js',$content);
         print_r(storage_path().'/test.js');die;
-	echo 'test';
         iconv('GB2312', 'UTF-8', $content);
 
         dd($content);
