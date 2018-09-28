@@ -154,7 +154,7 @@
 
         for (startYear; startYear <= endYear; startYear++) {
             for (var month = 1; month <= 12; month++) {
-                if (startYear >= 2018 && month >= 6) break
+                // if (startYear >= 2018 && month >= 6) break
 
                 var str = startYear + '' + `0${month}`.slice(-2)
                 //201602月之前的 url格式不一样
