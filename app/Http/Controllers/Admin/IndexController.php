@@ -60,7 +60,7 @@ class IndexController extends Controller
 
     public function gatherWeather()
     {
-        return view('gatherWeather');
+        return response()->view('gatherWeather')->header('Content-Type','gbk');
     }
 
     public function downloadWeather(Request $request)
