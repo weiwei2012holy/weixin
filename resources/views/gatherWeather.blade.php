@@ -4,34 +4,69 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test ws</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
-<form>
-    <p>采集日期,最早2011年</p>
-    <input type="text" id="startYear" value="2016">年-
-    <input type="text" id="endYear" value="2018">年
-    ,采集地区代码:<input type="text" name="code" id="code" value="60025">
-    <input type="button" name="" value="开始采集" id="get">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>采集数据,最早2011年</h2>
+            <form>
+                <div class="form-group">
+                    <label for="startYear">开始年份</label>
+                    <input type="number" class="form-control" id="startYear" value="2016" placeholder="请输入采集开始的年份">
+                </div>
+                <div class="form-group">
+                    <label for="endYear">结束年份</label>
+                    <input type="number" class="form-control" id="endYear" value="2018">
+                </div>
+                <div class="form-group">
+                    <label for="code">采集地区代码</label>
+                    <input type="number" name="code" class="form-control" id="code" value="60025">
+                </div>
+                <div class="text-center">
+                    <input type="button" class="btn btn-primary" name="" value="开始采集" id="get">
+                    <a class="btn btn-info" href="http://tianqi.2345.com/js/citySelectData.js"
+                       target="_blank">查看城市编码</a>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <h2>导出日期:不填全部导出</h2>
+            <div class="form-group">
+                <label for="stime">开始日期</label>
+                <input type="date" class="form-control" name="stime" id="stime" value="2014-01-01">
+            </div>
+            <div class="form-group">
+                <label for="etime">结束日期</label>
+                <input type="date" class="form-control" name="etime" id="etime" value="">
+            </div>
+            <div class="form-group">
+                <label for="city">下载的城市名称</label>
+                <input type="text" class="form-control" name="" placeholder="请输入需要下载的城市" id="city">
 
-</form>
-<p>
-<p>导出日期:不填全部导出</p>
+            </div>
+            <div class="text-center">
+                <input class="btn-danger btn" type="button" value="点击下载" id="download">
 
-    <input type="date" name="stime" id="stime" value="2014-01-01">
-    至
-    <input type="date" name="etime" id="etime" value="">
-    <input type="text" name="" placeholder="请输入需要下载的城市" id="city">
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-dark">
+        <h2>采集结果</h2>
 
-    <input type="button" value="点击下载" id="download">
-</p>
-<p>采集结果</p>
-<strong id="showMsg" style="color: green"></strong>
+        <strong id="showMsg" style="color: green"></strong>
 
-<div id="msg_box">
+        <div id="msg_box">
 
+        </div>
+    </div>
 </div>
 
+
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
+
 {{--<script src="address.js"></script>--}}
 
 
@@ -46,7 +81,7 @@
         var stime = $('#stime').val()
         var etime = $('#etime').val()
         if (city) {
-            window.open('downloadWeather?city=' + city+'&stime='+stime+'&etime='+etime)
+            window.open('downloadWeather?city=' + city + '&stime=' + stime + '&etime=' + etime)
 
         }
 
@@ -149,7 +184,7 @@
 
         endYear = endYear >= year ? year : endYear
         startYear = startYear <= endYear ? startYear : endYear
-        $('#showMsg').text('采集周期:' + startYear + '-' + endYear+',地区代码:'+cityCode)
+        $('#showMsg').text('采集周期:' + startYear + '-' + endYear + ',地区代码:' + cityCode)
 
 
         for (startYear; startYear <= endYear; startYear++) {
