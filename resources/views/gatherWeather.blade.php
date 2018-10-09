@@ -5,6 +5,24 @@
     <title>test ws</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
+<body>
+{{--<div class="jumbotron text-center" style="margin-bottom:0">--}}
+    {{--<h1>国内天气采集系统</h1>--}}
+{{--</div>--}}
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <a class="navbar-brand" href="#">导航</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href="http://tianqi.2345.com/js/citySelectData.js">查看城市编码</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -24,8 +42,6 @@
                 </div>
                 <div class="text-center">
                     <input type="button" class="btn btn-primary" name="" value="开始采集" id="get">
-                    <a class="btn btn-info" href="http://tianqi.2345.com/js/citySelectData.js"
-                       target="_blank">查看城市编码</a>
                 </div>
             </form>
         </div>
@@ -50,8 +66,7 @@
             </div>
         </div>
     </div>
-    <div class="alert alert-dark">
-        <h2>采集结果</h2>
+    <div class="col">
 
         <strong id="showMsg" style="color: green"></strong>
 
@@ -60,6 +75,10 @@
         </div>
     </div>
 </div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>敬请期待...</p>
+</div>
+</body>
 
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
